@@ -3,408 +3,186 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kladow Mobilitätsservice – verlässlich unterwegs</title>
+  <title>Kladow Mobilitätsservice – Verlässlich unterwegs</title>
   <meta name="description" content="Lokaler Mobilitätsservice in Berlin-Kladow: planbar, persönlich, telefonisch & online buchbar. Abos für Senior:innen und regelmäßige Fahrten." />
-
   <style>
     :root{
-      --bg:#f7f8fb;
-      --card:#ffffff;
-      --ink:#0b1220;
-      --muted:#5b667a;
-      --line:rgba(15, 23, 42, .10);
-      --shadow: 0 14px 40px rgba(15, 23, 42, .08);
-      --shadow2: 0 6px 18px rgba(15, 23, 42, .06);
-      --radius:22px;
-      --max:1120px;
-
-      --brand:#2563eb;
-      --brand2:#22c55e;
-      --brand3:#06b6d4;
-      --warn:#f59e0b;
+      --bg:#0b0f14;
+      --card:#101722;
+      --ink:#f2f5f7;
+      --muted:#a8b3bf;
+      --line:rgba(255,255,255,.10);
+      --brand:#7dd3fc;
+      --brand2:#34d399;
+      --warn:#fbbf24;
+      --radius:18px;
+      --max:1100px;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
     }
-
     *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      background: radial-gradient(1100px 700px at 15% -10%, rgba(37,99,235,.10), transparent 60%),
-                  radial-gradient(900px 500px at 95% 10%, rgba(34,197,94,.08), transparent 55%),
-                  var(--bg);
-      color:var(--ink);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
-      line-height:1.45;
-    }
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;line-height:1.45}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding:22px}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    /* NAV */
-    .nav{
-      display:flex;justify-content:space-between;align-items:center;gap:14px;
-      padding:12px 6px;
-    }
-    .brandmark{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.2px}
-    .pill{
-      font-size:12px;color:var(--muted);
-      border:1px solid var(--line);
-      padding:7px 10px;border-radius:999px;
-      background:rgba(255,255,255,.75);
-      width:max-content;
-    }
-    .navlinks{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-    .link{
-      color:var(--muted);
-      font-size:14px;
-      padding:10px 12px;border-radius:12px;
-    }
-    .link:hover{background:rgba(37,99,235,.08);color:var(--ink)}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      padding:12px 14px;border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.80);
-      box-shadow:var(--shadow2);
-      font-weight:800;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{
-      border:0;color:white;
-      background:linear-gradient(90deg,var(--brand),var(--brand3));
-    }
-
-    /* HERO IMAGE HEADER */
-    .hero{
-      position:relative;
-      border-radius:28px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      min-height: 420px;
-      display:flex;
-      align-items:flex-end;
-      margin-top:10px;
-      background:
-        url("https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=2400&q=80")
-        center/cover no-repeat;
-    }
-    /* dark overlay for readable text */
-    .hero:before{
-      content:"";
-      position:absolute;inset:0;
-      background:
-        radial-gradient(900px 450px at 20% 25%, rgba(0,0,0,.55), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.72));
-    }
-    .heroInner{
-      position:relative;
-      width:100%;
-      padding:26px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:end;
-    }
-    @media (max-width: 920px){
-      .hero{min-height: 520px}
-      .heroInner{grid-template-columns:1fr}
-    }
-
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-      color:rgba(255,255,255,.86);
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      padding:8px 12px;border-radius:999px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      width:max-content;
-    }
-    .heroTitle{
-      margin:12px 0 10px;
-      font-size:46px;line-height:1.03;
-      letter-spacing:-.02em;
-      color:white;
-      text-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    @media (max-width:920px){ .heroTitle{font-size:36px} }
-
-    .heroSub{
-      margin:0;
-      color:rgba(255,255,255,.86);
-      font-size:16px;
-      max-width:62ch;
-    }
-
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      color:rgba(255,255,255,.90);
-      font-size:13px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.10);
-      padding:10px 12px;border-radius:999px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
-    .btnGhost{
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      padding:12px 14px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.12);
-      color:white;
-      font-weight:900;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .btnGhost:hover{transform:translateY(-1px);background:rgba(255,255,255,.16)}
-    .btnSolid{
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      padding:12px 14px;border-radius:14px;
-      border:0;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      color:#071018;
-      font-weight:950;
-      box-shadow: 0 12px 30px rgba(0,0,0,.20);
-    }
-    .btnSolid:hover{transform:translateY(-1px);filter:brightness(1.03)}
-
-    .infoCard{
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:20px;
-      padding:16px;
-      color:rgba(255,255,255,.90);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .infoCard h3{margin:0 0 6px;font-size:16px;color:white}
-    .infoCard p{margin:0;color:rgba(255,255,255,.82);font-size:14px}
-    .divider{height:1px;background:rgba(255,255,255,.16);margin:12px 0}
-
-    /* SECTIONS */
-    .section{margin-top:26px}
-    .section h2{margin:0 0 10px;font-size:22px;letter-spacing:-.01em}
-    .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .span8{grid-column:span 8}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+    .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+    .nav a.link{color:var(--muted);font-size:14px;padding:8px 10px;border-radius:10px}
+    .nav a.link:hover{background:rgba(255,255,255,.06);color:var(--ink)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);font-weight:600}
+    .btn:hover{background:rgba(255,255,255,.10)}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));border:0;color:#071018}
+    .btn.primary:hover{filter:brightness(1.03)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;margin-top:14px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero .left{padding:26px}
+    .hero h1{font-size:40px;line-height:1.05;margin:0 0 12px}
+    @media (max-width:900px){.hero h1{font-size:34px}}
+    .sub{color:var(--muted);font-size:16px;margin:0 0 18px;max-width:60ch}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
+    .chip{border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);padding:8px 10px;border-radius:999px;font-size:13px}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+    .callout{margin-top:18px;border-left:3px solid var(--warn);padding:10px 12px;background:rgba(251,191,36,.08);border-radius:12px;color:var(--muted);font-size:13px}
+    .right{padding:18px}
+    .right .mini{padding:18px}
+    .mini h3{margin:0 0 10px;font-size:16px}
+    .mini p{margin:0;color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+    .span6{grid-column:span 6}
     .span4{grid-column:span 4}
-    @media (max-width:920px){ .span8,.span4{grid-column:span 12} }
-
-    /* PLANS */
-    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media (max-width:920px){ .plans{grid-template-columns:1fr} }
-    .plan{
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:18px;
-      background:#fff;
-      box-shadow:var(--shadow2);
-      display:flex;flex-direction:column;gap:10px;
-      position:relative;
-      overflow:hidden;
-    }
-    .plan:before{
-      content:"";
-      position:absolute;inset:-2px -2px auto -2px;height:4px;
-      background:linear-gradient(90deg, rgba(37,99,235,.9), rgba(6,182,212,.9), rgba(34,197,94,.9));
-    }
-    .tag{
-      display:inline-flex;align-items:center;gap:6px;
-      font-size:12px;font-weight:900;
-      background:rgba(37,99,235,.10);
-      color:rgba(37,99,235,.95);
-      padding:8px 10px;border-radius:999px;
-      border:1px solid rgba(37,99,235,.16);
-      width:max-content;
-    }
-    .plan.highlight{
-      background:linear-gradient(180deg, rgba(37,99,235,.07), rgba(34,197,94,.05));
-      border-color:rgba(37,99,235,.18);
-      box-shadow: 0 18px 52px rgba(37,99,235,.12);
-    }
-    .plan .name{font-weight:950}
-    .price{font-size:28px;font-weight:980;letter-spacing:-.02em}
-    .plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
-    .plan li{margin:7px 0}
-    .foot{margin-top:auto;color:var(--muted);font-size:12px}
-
-    /* FORM */
+    .span8{grid-column:span 8}
+    .span12{grid-column:span 12}
+    @media (max-width:900px){.span6,.span4,.span8{grid-column:span 12}}
+    .section{margin-top:28px}
+    .section h2{margin:0 0 12px;font-size:22px}
+    .muted{color:var(--muted)}
     .box{padding:18px}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    @media (max-width:900px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(255,255,255,.04)}
+    .kpi .big{font-size:18px;font-weight:700}
+    .kpi .small{color:var(--muted);font-size:13px;margin-top:6px}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.plans{grid-template-columns:1fr}}
+    .plan{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:10px}
+    .plan .name{font-weight:800}
+    .price{font-size:24px;font-weight:900}
+    .plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+    .plan li{margin:6px 0}
+    .plan .foot{color:var(--muted);font-size:12px;margin-top:auto}
+    .plan.highlight{background:linear-gradient(180deg, rgba(125,211,252,.14), rgba(52,211,153,.10));border-color:rgba(125,211,252,.35)}
     .form{display:grid;gap:10px}
     label{font-size:13px;color:var(--muted)}
     input,select,textarea{
       width:100%;
       padding:12px 12px;
-      border-radius:14px;
+      border-radius:12px;
       border:1px solid var(--line);
-      background:#fff;
+      background:rgba(0,0,0,.22);
       color:var(--ink);
       outline:none;
-      box-shadow:var(--shadow2);
     }
     textarea{min-height:110px;resize:vertical}
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:920px){ .row2{grid-template-columns:1fr} }
+    @media (max-width:900px){.row2{grid-template-columns:1fr}}
     .fineprint{color:var(--muted);font-size:12px}
-
-    details{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:12px 14px;
-      background:#fff;
-      box-shadow:var(--shadow2);
-    }
+    details{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.03)}
     details + details{margin-top:10px}
-    summary{cursor:pointer;font-weight:900}
-
-    footer{
-      margin:34px 0 18px;
-      color:var(--muted);
-      font-size:13px;
-      border-top:1px solid var(--line);
-      padding-top:18px;
-    }
+    summary{cursor:pointer;font-weight:650}
+    footer{margin:34px 0 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
     .legal a{color:var(--muted);text-decoration:underline}
-
-    /* ICONS */
-    .ico{width:18px;height:18px;flex:0 0 18px}
-    .icoW{width:18px;height:18px;flex:0 0 18px}
+    .smallcaps{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
-    <!-- NAV -->
     <div class="nav">
-      <div class="brandmark">
-        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#2563eb"/>
-              <stop offset="1" stop-color="#22c55e"/>
-            </linearGradient>
-          </defs>
-          <rect x="3" y="3" width="28" height="28" rx="10" fill="url(#g)"/>
-          <path d="M12 20.5c2.4-6 7.6-9 13-9-1.2 6.3-5.2 12-12.2 12.5-.8.1-1.6.1-2.5 0 .8-1 1.3-2 1.7-3.5z" fill="white" opacity=".92"/>
-        </svg>
-        <div>
-          <div style="font-size:15px;line-height:1.1">Kladow Mobilitätsservice</div>
-          <div class="pill">Telefon & Online • planbar • persönlich</div>
-        </div>
+      <div class="logo">
+        <span style="width:12px;height:12px;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--brand2));display:inline-block"></span>
+        <span>Kladow Mobilitätsservice</span>
+        <span class="badge">Telefon & Online • planbar • persönlich</span>
       </div>
-
-      <div class="navlinks">
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         <a class="link" href="#abos">Abos</a>
         <a class="link" href="#buchen">Buchen</a>
         <a class="link" href="#faq">FAQ</a>
-        <a class="btn primary" href="tel:+493012345678">
-          <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="white" d="M6.6 10.8c1.6 3 3.6 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.4 1.8 1.7 2.3 1.2 3 1.2h3.6c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.2 1.2L6.6 10.8z"/>
-          </svg>
-          Jetzt anrufen
-        </a>
+        <a class="btn primary" href="tel:+493012345678">Jetzt anrufen</a>
       </div>
     </div>
 
-    <!-- HERO HEADER MIT BILD -->
-    <header class="hero" role="banner" aria-label="Hero">
-      <div class="heroInner">
-        <div>
-          <div class="eyebrow">
-            <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="white" d="M12 2l1.4 5.1L18 9l-4.6 1.9L12 16l-1.4-5.1L6 9l4.6-1.9L12 2z" opacity=".95"/>
-            </svg>
-            Mobilität in Kladow
-          </div>
+    <section class="hero">
+      <div class="card left">
+        <div class="smallcaps">Mobilität in Kladow</div>
+        <h1>Verlässlich unterwegs – auch ohne Auto.</h1>
+        <p class="sub">
+          Ein lokaler Fahrservice für Berlin-Kladow: <b>vorbestellbar</b>, <b>ein fester Fahrer</b>,
+          Buchung per <b>Telefon</b> oder <b>kurzem Online-Formular</b>.
+        </p>
 
-          <h1 class="heroTitle">Sicher, planbar & persönlich –<br/>dein Fahrservice in Kladow.</h1>
-          <p class="heroSub">
-            Vorbestellen statt hoffen: Haustür-zu-Haustür, ein fester Fahrer, Buchung per Telefon oder Online.
-            Ideal für Arzttermine, Einkäufe und Alltagswege.
-          </p>
-
-          <div class="chips">
-            <div class="chip">
-              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M9.2 16.6L4.9 12.3l1.7-1.7 2.6 2.6 7.2-7.2 1.7 1.7-8.9 8.9z" opacity=".95"/>
-              </svg>
-              Haustür-zu-Haustür
-            </div>
-            <div class="chip">
-              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm0 18.1A7.9 7.9 0 1 1 19.9 12 7.9 7.9 0 0 1 12 19.9Z" opacity=".9"/>
-                <path fill="white" d="M12.8 6.5h-1.6v6l5 3 .8-1.3-4.2-2.5V6.5z" opacity=".95"/>
-              </svg>
-              Planbare Zeitfenster
-            </div>
-            <div class="chip">
-              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M12 2.5l7.5 3.7v5.9c0 5-3.2 9.5-7.5 10.9C7.7 21.6 4.5 17.1 4.5 12.1V6.2L12 2.5z" opacity=".95"/>
-              </svg>
-              Vertrauen & Stammkunden
-            </div>
-          </div>
-
-          <div class="cta">
-            <a class="btnSolid" href="tel:+493012345678">
-              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M6.6 10.8c1.6 3 3.6 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.4 1.8 1.7 2.3 1.2 3 1.2h3.6c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.2 1.2L6.6 10.8z"/>
-              </svg>
-              +49 30 12345678
-            </a>
-            <a class="btnGhost" href="#buchen">
-              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M7 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2z" opacity=".95"/>
-              </svg>
-              Online vorbestellen
-            </a>
-            <a class="btnGhost" href="#abos">
-              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm-1 14.4-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" opacity=".95"/>
-              </svg>
-              Abo auswählen
-            </a>
-          </div>
+        <div class="chips">
+          <div class="chip">Haustür-zu-Haustür</div>
+          <div class="chip">Vorrang für Stammkund:innen</div>
+          <div class="chip">Feste Zeitfenster</div>
+          <div class="chip">Abrechnung transparent</div>
         </div>
 
-        <aside class="infoCard" aria-label="Kurzinfo">
-          <h3>Direkt & unkompliziert</h3>
-          <p>Telefon ist der Hauptkanal – Online ist optional.</p>
-          <div class="divider"></div>
+        <div class="cta">
+          <a class="btn primary" href="tel:+493012345678">📞 +49 30 12345678</a>
+          <a class="btn" href="#buchen">Online vorbestellen</a>
+          <a class="btn" href="#abos">Abo auswählen</a>
+        </div>
 
-          <p><b>Servicezeiten (Beispiel):</b><br/>Mo–Sa 07:00–19:00</p>
-          <div class="divider"></div>
-
-          <p style="margin-bottom:0">
-            <b>Hinweis:</b> Fahrten erfolgen als Taxi nach gültigem Tarif. Abos bieten Service & Planung (keine Tarif-Umgehung).
-          </p>
-        </aside>
+        <div class="callout">
+          Fahrten erfolgen als Taxi nach gültigem Tarif. Abos bieten <b>Service, Planung und Vorrang</b> – keine Tarif-Umgehung.
+        </div>
       </div>
-    </header>
 
-    <!-- ABOS -->
+      <div class="card right">
+        <div class="mini card" style="background:rgba(255,255,255,.03)">
+          <h3>Für wen?</h3>
+          <p>Senior:innen, Familien, Menschen ohne Auto – besonders für planbare Arzt-, Einkaufs- und Alltagsfahrten.</p>
+        </div>
+
+        <div class="grid" style="margin-top:12px">
+          <div class="card box span12">
+            <div class="kpis">
+              <div class="kpi">
+                <div class="big">Planbar</div>
+                <div class="small">Vorbestellungen statt Stress.</div>
+              </div>
+              <div class="kpi">
+                <div class="big">Persönlich</div>
+                <div class="small">Ein fester Ansprechpartner.</div>
+              </div>
+              <div class="kpi">
+                <div class="big">Einfach</div>
+                <div class="small">Telefon oder Online-Formular.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card box span12">
+            <div class="smallcaps">Servicezeiten</div>
+            <div style="margin-top:6px;color:var(--muted);font-size:14px">
+              Beispiel: Mo–Sa 07:00–19:00 • Vorbestellung empfohlen • Sonderzeiten nach Verfügbarkeit
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="abos">
       <h2>Abos (Service & Planung)</h2>
       <p class="muted">
-        Abos geben dir Vorrang, feste Zeitfenster und vereinfachte Abrechnung.
-        Die eigentliche Fahrt wird weiterhin transparent nach Taxitarif abgerechnet.
+        Abos geben dir Vorrang, feste Zeitfenster und vereinfachte Abrechnung. Die eigentliche Fahrt wird
+        weiterhin transparent nach Taxitarif abgerechnet.
       </p>
 
       <div class="plans">
         <div class="plan">
-          <div class="tag">Einsteiger</div>
           <div class="name">Basis • „Sicher unterwegs“</div>
-          <div class="price">29 € <span style="font-size:14px;font-weight:800;color:var(--muted)">/ Monat</span></div>
+          <div class="price">29 € <span style="font-size:14px;font-weight:700;color:var(--muted)">/ Monat</span></div>
           <ul>
             <li>Vorrangige Buchung in Kladow</li>
             <li>Telefon-Direktnummer</li>
@@ -414,9 +192,8 @@
         </div>
 
         <div class="plan highlight">
-          <div class="tag">Empfohlen</div>
           <div class="name">Komfort • „Arzt & Alltag“</div>
-          <div class="price">99 € <span style="font-size:14px;font-weight:800;color:var(--muted)">/ Monat</span></div>
+          <div class="price">99 € <span style="font-size:14px;font-weight:700;color:var(--muted)">/ Monat</span></div>
           <ul>
             <li>4 planbare Termin-Slots/Monat</li>
             <li>Bevorzugte Terminfixierung</li>
@@ -426,9 +203,8 @@
         </div>
 
         <div class="plan">
-          <div class="tag">Max. Sicherheit</div>
           <div class="name">Plus • „Flexibel & begleitet“</div>
-          <div class="price">149 € <span style="font-size:14px;font-weight:800;color:var(--muted)">/ Monat</span></div>
+          <div class="price">149 € <span style="font-size:14px;font-weight:700;color:var(--muted)">/ Monat</span></div>
           <ul>
             <li>6–8 planbare Termin-Slots/Monat</li>
             <li>Wartezeit bis 30 Min inklusive</li>
@@ -438,19 +214,21 @@
         </div>
       </div>
 
-      <div class="card box" style="margin-top:12px;box-shadow:var(--shadow2)">
+      <div class="card box" style="margin-top:12px">
         <b>Für Angehörige:</b> Abos können auf Wunsch auf Rechnung laufen (z. B. Monatsrechnung per E-Mail).
       </div>
     </section>
 
-    <!-- BOOKING -->
     <section class="section" id="buchen">
       <h2>Fahrt vorbestellen</h2>
       <p class="muted">Schnell & simpel. Du bekommst eine Bestätigung per Telefon oder E-Mail.</p>
 
       <div class="grid">
         <div class="card box span8">
-          <!-- Ohne Backend: Mailto. Für echtes Absenden später Netlify Forms / Formspree. -->
+          <!--
+            Ohne Backend kann das Formular nur per Mailto geöffnet werden.
+            Für "richtiges" Absenden: später z.B. Formspree, Netlify Forms oder ein Mini-Backend.
+          -->
           <form class="form" action="mailto:DEINE-EMAIL@DOMAIN.DE" method="post" enctype="text/plain">
             <div class="row2">
               <div>
@@ -519,34 +297,32 @@
         </div>
 
         <div class="card box span4">
-          <h3 style="margin:0 0 10px">Direktkontakt</h3>
-          <p class="muted" style="margin:0 0 12px">
+          <h3 style="margin-top:0">Direktkontakt</h3>
+          <p class="muted" style="margin-top:8px">
             <b>Telefon:</b> <a href="tel:+493012345678" style="text-decoration:underline">+49 30 12345678</a><br/>
             <b>E-Mail:</b> <a href="mailto:DEINE-EMAIL@DOMAIN.DE" style="text-decoration:underline">DEINE-EMAIL@DOMAIN.DE</a>
           </p>
-          <div style="border-top:1px solid var(--line);padding-top:12px" class="muted">
-            <b>Empfehlung:</b> Bitte möglichst vorbestellen, damit Termine sicher klappen und Leerfahrten sinken.
+          <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px" class="muted">
+            <b>Hinweis:</b> Bitte möglichst vorbestellen, damit Leerfahrten vermieden werden und Termine sicher klappen.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section" id="faq">
       <h2>FAQ</h2>
 
       <details>
         <summary>Ist das ein Taxi oder ein privater Fahrdienst?</summary>
         <div class="muted" style="margin-top:8px">
-          Die Fahrten erfolgen als Taxi nach gültigem Tarif. Der Fokus ist lokal: Kladow, planbar, persönlich, verlässlich.
+          Die Fahrten erfolgen als Taxi nach gültigem Tarif. Der Unterschied ist der Fokus auf Kladow: planbar, persönlich, verlässlich.
         </div>
       </details>
 
       <details>
         <summary>Was genau bekomme ich beim Abo?</summary>
         <div class="muted" style="margin-top:8px">
-          Vorrangige Buchung, feste Zeitfenster, vereinfachte Abrechnung und je nach Paket inkludierte Wartezeiten.
-          Die Fahrt selbst bleibt tariflich transparent.
+          Vorrangige Buchung, feste Zeitfenster, vereinfachte Abrechnung und je nach Paket inkludierte Wartezeiten. Die Fahrt selbst bleibt tariflich transparent.
         </div>
       </details>
 
@@ -560,7 +336,14 @@
       <details>
         <summary>Gibt es Hilfe beim Ein- und Aussteigen?</summary>
         <div class="muted" style="margin-top:8px">
-          Kurze Unterstützung (z. B. Tür/ Rollator) ist möglich. Keine Pflegeleistung, kein Krankentransport.
+          Ja, kurze Unterstützung ist möglich (z. B. Tür, Rollator). Keine Pflegeleistung, kein Krankentransport.
+        </div>
+      </details>
+
+      <details>
+        <summary>Wie schnell bekomme ich eine Rückmeldung?</summary>
+        <div class="muted" style="margin-top:8px">
+          In der Regel am selben Tag innerhalb der Servicezeiten. Bei Vorbestellungen bestätigen wir Termin & Abholung.
         </div>
       </details>
     </section>
@@ -568,11 +351,11 @@
     <footer>
       <div class="legal">
         <b>Impressum</b> (Platzhalter) • <b>Datenschutz</b> (Platzhalter)<br/>
-        Betreiber: DEIN NAME / DEINE FIRMA • Straße Hausnr. • 14089 Berlin • E-Mail: DEINE-EMAIL@DOMAIN.DE • Tel.: +49 30 12345678
+        Betreiber: DEIN NAME / DEINE FIRMA • Straße Hausnr. • 14089 Berlin • E-Mail: DEINE-EMAIL@DOMAIN.DE • Tel.: +49 30 12345678<br/>
+        <span class="muted">Bitte rechtssicher ausfüllen (USt-ID, Handelsregister falls vorhanden, Verantwortliche Person etc.).</span>
       </div>
       <div style="margin-top:10px" class="muted">© <span id="y"></span> Kladow Mobilitätsservice</div>
     </footer>
-
   </div>
 
   <script>
