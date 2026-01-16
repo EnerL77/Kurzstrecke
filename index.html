@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kladow Mobilitätsservice – Verlässlich unterwegs</title>
+  <meta name="description" content="Lokaler Mobilitätsservice in Berlin-Kladow: planbar, persönlich, telefonisch & online buchbar. Abos für Senior:innen und regelmäßige Fahrten." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#101722;
+      --ink:#f2f5f7;
+      --muted:#a8b3bf;
+      --line:rgba(255,255,255,.10);
+      --brand:#7dd3fc;
+      --brand2:#34d399;
+      --warn:#fbbf24;
+      --radius:18px;
+      --max:1100px;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;line-height:1.45}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:22px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+    .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+    .nav a.link{color:var(--muted);font-size:14px;padding:8px 10px;border-radius:10px}
+    .nav a.link:hover{background:rgba(255,255,255,.06);color:var(--ink)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);font-weight:600}
+    .btn:hover{background:rgba(255,255,255,.10)}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));border:0;color:#071018}
+    .btn.primary:hover{filter:brightness(1.03)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;margin-top:14px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero .left{padding:26px}
+    .hero h1{font-size:40px;line-height:1.05;margin:0 0 12px}
+    @media (max-width:900px){.hero h1{font-size:34px}}
+    .sub{color:var(--muted);font-size:16px;margin:0 0 18px;max-width:60ch}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
+    .chip{border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);padding:8px 10px;border-radius:999px;font-size:13px}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+    .callout{margin-top:18px;border-left:3px solid var(--warn);padding:10px 12px;background:rgba(251,191,36,.08);border-radius:12px;color:var(--muted);font-size:13px}
+    .right{padding:18px}
+    .right .mini{padding:18px}
+    .mini h3{margin:0 0 10px;font-size:16px}
+    .mini p{margin:0;color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+    .span6{grid-column:span 6}
+    .span4{grid-column:span 4}
+    .span8{grid-column:span 8}
+    .span12{grid-column:span 12}
+    @media (max-width:900px){.span6,.span4,.span8{grid-column:span 12}}
+    .section{margin-top:28px}
+    .section h2{margin:0 0 12px;font-size:22px}
+    .muted{color:var(--muted)}
+    .box{padding:18px}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    @media (max-width:900px){.kpis{grid-template-columns:1fr}}
+    .kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(255,255,255,.04)}
+    .kpi .big{font-size:18px;font-weight:700}
+    .kpi .small{color:var(--muted);font-size:13px;margin-top:6px}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:900px){.plans{grid-template-columns:1fr}}
+    .plan{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:10px}
+    .plan .name{font-weight:800}
+    .price{font-size:24px;font-weight:900}
+    .plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+    .plan li{margin:6px 0}
+    .plan .foot{color:var(--muted);font-size:12px;margin-top:auto}
+    .plan.highlight{background:linear-gradient(180deg, rgba(125,211,252,.14), rgba(52,211,153,.10));border-color:rgba(125,211,252,.35)}
+    .form{display:grid;gap:10px}
+    label{font-size:13px;color:var(--muted)}
+    input,select,textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.22);
+      color:var(--ink);
+      outline:none;
+    }
+    textarea{min-height:110px;resize:vertical}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:900px){.row2{grid-template-columns:1fr}}
+    .fineprint{color:var(--muted);font-size:12px}
+    details{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.03)}
+    details + details{margin-top:10px}
+    summary{cursor:pointer;font-weight:650}
+    footer{margin:34px 0 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
+    .legal a{color:var(--muted);text-decoration:underline}
+    .smallcaps{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <div class="logo">
+        <span style="width:12px;height:12px;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--brand2));display:inline-block"></span>
+        <span>Kladow Mobilitätsservice</span>
+        <span class="badge">Telefon & Online • planbar • persönlich</span>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <a class="link" href="#abos">Abos</a>
+        <a class="link" href="#buchen">Buchen</a>
+        <a class="link" href="#faq">FAQ</a>
+        <a class="btn primary" href="tel:+493012345678">Jetzt anrufen</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="card left">
+        <div class="smallcaps">Mobilität in Kladow</div>
+        <h1>Verlässlich unterwegs – auch ohne Auto.</h1>
+        <p class="sub">
+          Ein lokaler Fahrservice für Berlin-Kladow: <b>vorbestellbar</b>, <b>ein fester Fahrer</b>,
+          Buchung per <b>Telefon</b> oder <b>kurzem Online-Formular</b>.
+        </p>
+
+        <div class="chips">
+          <div class="chip">Haustür-zu-Haustür</div>
+          <div class="chip">Vorrang für Stammkund:innen</div>
+          <div class="chip">Feste Zeitfenster</div>
+          <div class="chip">Abrechnung transparent</div>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="tel:+493012345678">📞 +49 30 12345678</a>
+          <a class="btn" href="#buchen">Online vorbestellen</a>
+          <a class="btn" href="#abos">Abo auswählen</a>
+        </div>
+
+        <div class="callout">
+          Fahrten erfolgen als Taxi nach gültigem Tarif. Abos bieten <b>Service, Planung und Vorrang</b> – keine Tarif-Umgehung.
+        </div>
+      </div>
+
+      <div class="card right">
+        <div class="mini card" style="background:rgba(255,255,255,.03)">
+          <h3>Für wen?</h3>
+          <p>Senior:innen, Familien, Menschen ohne Auto – besonders für planbare Arzt-, Einkaufs- und Alltagsfahrten.</p>
+        </div>
+
+        <div class="grid" style="margin-top:12px">
+          <div class="card box span12">
+            <div class="kpis">
+              <div class="kpi">
+                <div class="big">Planbar</div>
+                <div class="small">Vorbestellungen statt Stress.</div>
+              </div>
+              <div class="kpi">
+                <div class="big">Persönlich</div>
+                <div class="small">Ein fester Ansprechpartner.</div>
+              </div>
+              <div class="kpi">
+                <div class="big">Einfach</div>
+                <div class="small">Telefon oder Online-Formular.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card box span12">
+            <div class="smallcaps">Servicezeiten</div>
+            <div style="margin-top:6px;color:var(--muted);font-size:14px">
+              Beispiel: Mo–Sa 07:00–19:00 • Vorbestellung empfohlen • Sonderzeiten nach Verfügbarkeit
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="abos">
+      <h2>Abos (Service & Planung)</h2>
+      <p class="muted">
+        Abos geben dir Vorrang, feste Zeitfenster und vereinfachte Abrechnung. Die eigentliche Fahrt wird
+        weiterhin transparent nach Taxitarif abgerechnet.
+      </p>
+
+      <div class="plans">
+        <div class="plan">
+          <div class="name">Basis • „Sicher unterwegs“</div>
+          <div class="price">29 € <span style="font-size:14px;font-weight:700;color:var(--muted)">/ Monat</span></div>
+          <ul>
+            <li>Vorrangige Buchung in Kladow</li>
+            <li>Telefon-Direktnummer</li>
+            <li>Feste Zeitfenster (z. B. 9–12 Uhr)</li>
+          </ul>
+          <div class="foot">Fahrten nach Taxitarif • monatlich kündbar</div>
+        </div>
+
+        <div class="plan highlight">
+          <div class="name">Komfort • „Arzt & Alltag“</div>
+          <div class="price">99 € <span style="font-size:14px;font-weight:700;color:var(--muted)">/ Monat</span></div>
+          <ul>
+            <li>4 planbare Termin-Slots/Monat</li>
+            <li>Bevorzugte Terminfixierung</li>
+            <li>Wartezeit bis 15 Min inklusive</li>
+          </ul>
+          <div class="foot">Fahrten nach Taxitarif • ideal für regelmäßige Termine</div>
+        </div>
+
+        <div class="plan">
+          <div class="name">Plus • „Flexibel & begleitet“</div>
+          <div class="price">149 € <span style="font-size:14px;font-weight:700;color:var(--muted)">/ Monat</span></div>
+          <ul>
+            <li>6–8 planbare Termin-Slots/Monat</li>
+            <li>Wartezeit bis 30 Min inklusive</li>
+            <li>Kurze Hilfe beim Ein-/Aussteigen</li>
+          </ul>
+          <div class="foot">Fahrten nach Taxitarif • für erhöhte Planungssicherheit</div>
+        </div>
+      </div>
+
+      <div class="card box" style="margin-top:12px">
+        <b>Für Angehörige:</b> Abos können auf Wunsch auf Rechnung laufen (z. B. Monatsrechnung per E-Mail).
+      </div>
+    </section>
+
+    <section class="section" id="buchen">
+      <h2>Fahrt vorbestellen</h2>
+      <p class="muted">Schnell & simpel. Du bekommst eine Bestätigung per Telefon oder E-Mail.</p>
+
+      <div class="grid">
+        <div class="card box span8">
+          <!--
+            Ohne Backend kann das Formular nur per Mailto geöffnet werden.
+            Für "richtiges" Absenden: später z.B. Formspree, Netlify Forms oder ein Mini-Backend.
+          -->
+          <form class="form" action="mailto:DEINE-EMAIL@DOMAIN.DE" method="post" enctype="text/plain">
+            <div class="row2">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="Name" placeholder="Vor- und Nachname" required />
+              </div>
+              <div>
+                <label for="phone">Telefon</label>
+                <input id="phone" name="Telefon" placeholder="+49 …" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="from">Abholadresse</label>
+                <input id="from" name="Abholadresse" placeholder="Straße, Hausnr., Kladow" required />
+              </div>
+              <div>
+                <label for="to">Ziel</label>
+                <input id="to" name="Ziel" placeholder="z. B. Arzt, Apotheke, Spandau, Wannsee" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="date">Datum</label>
+                <input id="date" name="Datum" type="date" required />
+              </div>
+              <div>
+                <label for="time">Uhrzeit</label>
+                <input id="time" name="Uhrzeit" type="time" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="abo">Abo (optional)</label>
+                <select id="abo" name="Abo">
+                  <option value="">Kein Abo</option>
+                  <option>Basis</option>
+                  <option>Komfort</option>
+                  <option>Plus</option>
+                </select>
+              </div>
+              <div>
+                <label for="contact">Rückmeldung</label>
+                <select id="contact" name="Rückmeldung">
+                  <option>Telefon</option>
+                  <option>E-Mail</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="notes">Hinweise (optional)</label>
+              <textarea id="notes" name="Hinweise" placeholder="z. B. kurze Wartezeit, Rollator, Stufe am Eingang, Begleitung …"></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Anfrage senden</button>
+
+            <div class="fineprint">
+              Mit dem Absenden erklärst du dich einverstanden, dass wir deine Angaben zur Bearbeitung der Anfrage nutzen.
+              Details im Datenschutz (siehe unten).
+            </div>
+          </form>
+        </div>
+
+        <div class="card box span4">
+          <h3 style="margin-top:0">Direktkontakt</h3>
+          <p class="muted" style="margin-top:8px">
+            <b>Telefon:</b> <a href="tel:+493012345678" style="text-decoration:underline">+49 30 12345678</a><br/>
+            <b>E-Mail:</b> <a href="mailto:DEINE-EMAIL@DOMAIN.DE" style="text-decoration:underline">DEINE-EMAIL@DOMAIN.DE</a>
+          </p>
+          <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px" class="muted">
+            <b>Hinweis:</b> Bitte möglichst vorbestellen, damit Leerfahrten vermieden werden und Termine sicher klappen.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>Ist das ein Taxi oder ein privater Fahrdienst?</summary>
+        <div class="muted" style="margin-top:8px">
+          Die Fahrten erfolgen als Taxi nach gültigem Tarif. Der Unterschied ist der Fokus auf Kladow: planbar, persönlich, verlässlich.
+        </div>
+      </details>
+
+      <details>
+        <summary>Was genau bekomme ich beim Abo?</summary>
+        <div class="muted" style="margin-top:8px">
+          Vorrangige Buchung, feste Zeitfenster, vereinfachte Abrechnung und je nach Paket inkludierte Wartezeiten. Die Fahrt selbst bleibt tariflich transparent.
+        </div>
+      </details>
+
+      <details>
+        <summary>Kann ich auch ohne Smartphone buchen?</summary>
+        <div class="muted" style="margin-top:8px">
+          Ja. Telefon ist der Hauptkanal. Online ist nur eine zusätzliche Option.
+        </div>
+      </details>
+
+      <details>
+        <summary>Gibt es Hilfe beim Ein- und Aussteigen?</summary>
+        <div class="muted" style="margin-top:8px">
+          Ja, kurze Unterstützung ist möglich (z. B. Tür, Rollator). Keine Pflegeleistung, kein Krankentransport.
+        </div>
+      </details>
+
+      <details>
+        <summary>Wie schnell bekomme ich eine Rückmeldung?</summary>
+        <div class="muted" style="margin-top:8px">
+          In der Regel am selben Tag innerhalb der Servicezeiten. Bei Vorbestellungen bestätigen wir Termin & Abholung.
+        </div>
+      </details>
+    </section>
+
+    <footer>
+      <div class="legal">
+        <b>Impressum</b> (Platzhalter) • <b>Datenschutz</b> (Platzhalter)<br/>
+        Betreiber: DEIN NAME / DEINE FIRMA • Straße Hausnr. • 14089 Berlin • E-Mail: DEINE-EMAIL@DOMAIN.DE • Tel.: +49 30 12345678<br/>
+        <span class="muted">Bitte rechtssicher ausfüllen (USt-ID, Handelsregister falls vorhanden, Verantwortliche Person etc.).</span>
+      </div>
+      <div style="margin-top:10px" class="muted">© <span id="y"></span> Kladow Mobilitätsservice</div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
