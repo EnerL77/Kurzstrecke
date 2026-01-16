@@ -18,25 +18,25 @@
       --radius:22px;
       --max:1120px;
 
-      --brand:#2563eb;   /* blue */
-      --brand2:#22c55e;  /* green */
-      --brand3:#06b6d4;  /* cyan */
-      --warn:#f59e0b;    /* amber */
+      --brand:#2563eb;
+      --brand2:#22c55e;
+      --brand3:#06b6d4;
+      --warn:#f59e0b;
     }
 
     *{box-sizing:border-box}
     html,body{
       margin:0;
-      background: radial-gradient(1100px 700px at 15% -10%, rgba(37,99,235,.12), transparent 60%),
-                  radial-gradient(900px 500px at 95% 10%, rgba(34,197,94,.10), transparent 55%),
+      background: radial-gradient(1100px 700px at 15% -10%, rgba(37,99,235,.10), transparent 60%),
+                  radial-gradient(900px 500px at 95% 10%, rgba(34,197,94,.08), transparent 55%),
                   var(--bg);
       color:var(--ink);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
       line-height:1.45;
     }
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
     .wrap{max-width:var(--max);margin:0 auto;padding:22px}
+
     .card{
       background:var(--card);
       border:1px solid var(--line);
@@ -46,21 +46,16 @@
 
     /* NAV */
     .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
+      display:flex;justify-content:space-between;align-items:center;gap:14px;
       padding:12px 6px;
     }
-    .brandmark{
-      display:flex;align-items:center;gap:12px;
-      font-weight:800;letter-spacing:.2px;
-    }
+    .brandmark{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.2px}
     .pill{
       font-size:12px;color:var(--muted);
       border:1px solid var(--line);
       padding:7px 10px;border-radius:999px;
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.75);
+      width:max-content;
     }
     .navlinks{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
     .link{
@@ -73,110 +68,140 @@
       display:inline-flex;align-items:center;justify-content:center;gap:9px;
       padding:12px 14px;border-radius:14px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.80);
       box-shadow:var(--shadow2);
-      font-weight:700;
+      font-weight:800;
     }
     .btn:hover{transform:translateY(-1px)}
     .btn.primary{
-      border:0;
-      color:white;
+      border:0;color:white;
       background:linear-gradient(90deg,var(--brand),var(--brand3));
     }
 
-    /* HERO */
+    /* HERO IMAGE HEADER */
     .hero{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:16px;
-      align-items:stretch;
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      min-height: 420px;
+      display:flex;
+      align-items:flex-end;
       margin-top:10px;
+      background:
+        url("https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=2400&q=80")
+        center/cover no-repeat;
     }
-    @media (max-width: 920px){ .hero{grid-template-columns:1fr} }
+    /* dark overlay for readable text */
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        radial-gradient(900px 450px at 20% 25%, rgba(0,0,0,.55), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.72));
+    }
+    .heroInner{
+      position:relative;
+      width:100%;
+      padding:26px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:end;
+    }
+    @media (max-width: 920px){
+      .hero{min-height: 520px}
+      .heroInner{grid-template-columns:1fr}
+    }
 
-    .heroL{padding:28px}
     .eyebrow{
       display:inline-flex;align-items:center;gap:8px;
       font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-      color:var(--muted);
-      background:rgba(37,99,235,.08);
-      border:1px solid rgba(37,99,235,.14);
+      color:rgba(255,255,255,.86);
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
       padding:8px 12px;border-radius:999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      width:max-content;
     }
-    h1{
-      margin:14px 0 12px;
-      font-size:44px;line-height:1.05;
+    .heroTitle{
+      margin:12px 0 10px;
+      font-size:46px;line-height:1.03;
       letter-spacing:-.02em;
+      color:white;
+      text-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
-    @media (max-width:920px){ h1{font-size:36px} }
-    .sub{
-      margin:0 0 18px;
-      color:var(--muted);
+    @media (max-width:920px){ .heroTitle{font-size:36px} }
+
+    .heroSub{
+      margin:0;
+      color:rgba(255,255,255,.86);
       font-size:16px;
       max-width:62ch;
     }
 
-    .featuresRow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 20px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .chip{
       display:inline-flex;align-items:center;gap:8px;
-      border:1px solid var(--line);
-      background:#fff;
+      color:rgba(255,255,255,.90);
+      font-size:13px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
       padding:10px 12px;border-radius:999px;
-      color:var(--muted);
-      font-size:13px;
-      box-shadow:var(--shadow2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px}
-
-    .note{
-      margin-top:18px;
-      padding:12px 14px;
-      border-radius:16px;
-      background:rgba(245,158,11,.12);
-      border:1px solid rgba(245,158,11,.18);
-      color:#7a4a00;
-      font-size:13px;
-      display:flex;gap:10px;align-items:flex-start;
+    .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+    .btnGhost{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      color:white;
+      font-weight:900;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+    .btnGhost:hover{transform:translateY(-1px);background:rgba(255,255,255,.16)}
+    .btnSolid{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:12px 14px;border-radius:14px;
+      border:0;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      color:#071018;
+      font-weight:950;
+      box-shadow: 0 12px 30px rgba(0,0,0,.20);
+    }
+    .btnSolid:hover{transform:translateY(-1px);filter:brightness(1.03)}
 
-    .heroR{padding:18px}
-    .mini{
-      border-radius:18px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(34,197,94,.04));
+    .infoCard{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:20px;
       padding:16px;
+      color:rgba(255,255,255,.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
-    .mini h3{margin:0 0 8px;font-size:16px}
-    .mini p{margin:0;color:var(--muted);font-size:14px}
-    .kpis{
-      display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px;
-    }
-    .kpi{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      background:#fff;
-      box-shadow:var(--shadow2);
-      display:flex;gap:12px;align-items:flex-start;
-    }
-    .kpi .t{font-weight:800}
-    .kpi .d{color:var(--muted);font-size:13px;margin-top:4px}
+    .infoCard h3{margin:0 0 6px;font-size:16px;color:white}
+    .infoCard p{margin:0;color:rgba(255,255,255,.82);font-size:14px}
+    .divider{height:1px;background:rgba(255,255,255,.16);margin:12px 0}
 
     /* SECTIONS */
     .section{margin-top:26px}
     .section h2{margin:0 0 10px;font-size:22px;letter-spacing:-.01em}
     .muted{color:var(--muted)}
-
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .span8{grid-column:span 8}
     .span4{grid-column:span 4}
-    .span12{grid-column:span 12}
-    @media (max-width: 920px){ .span8,.span4{grid-column:span 12} }
+    @media (max-width:920px){ .span8,.span4{grid-column:span 12} }
 
     /* PLANS */
     .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media (max-width: 920px){ .plans{grid-template-columns:1fr} }
+    @media (max-width:920px){ .plans{grid-template-columns:1fr} }
     .plan{
       border:1px solid var(--line);
       border-radius:22px;
@@ -192,13 +217,9 @@
       position:absolute;inset:-2px -2px auto -2px;height:4px;
       background:linear-gradient(90deg, rgba(37,99,235,.9), rgba(6,182,212,.9), rgba(34,197,94,.9));
     }
-    .plan .name{font-weight:900}
-    .price{font-size:28px;font-weight:950;letter-spacing:-.02em}
-    .plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
-    .plan li{margin:7px 0}
     .tag{
       display:inline-flex;align-items:center;gap:6px;
-      font-size:12px;font-weight:800;
+      font-size:12px;font-weight:900;
       background:rgba(37,99,235,.10);
       color:rgba(37,99,235,.95);
       padding:8px 10px;border-radius:999px;
@@ -210,6 +231,10 @@
       border-color:rgba(37,99,235,.18);
       box-shadow: 0 18px 52px rgba(37,99,235,.12);
     }
+    .plan .name{font-weight:950}
+    .price{font-size:28px;font-weight:980;letter-spacing:-.02em}
+    .plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+    .plan li{margin:7px 0}
     .foot{margin-top:auto;color:var(--muted);font-size:12px}
 
     /* FORM */
@@ -230,6 +255,7 @@
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     @media (max-width:920px){ .row2{grid-template-columns:1fr} }
     .fineprint{color:var(--muted);font-size:12px}
+
     details{
       border:1px solid var(--line);
       border-radius:18px;
@@ -238,7 +264,8 @@
       box-shadow:var(--shadow2);
     }
     details + details{margin-top:10px}
-    summary{cursor:pointer;font-weight:800}
+    summary{cursor:pointer;font-weight:900}
+
     footer{
       margin:34px 0 18px;
       color:var(--muted);
@@ -250,7 +277,7 @@
 
     /* ICONS */
     .ico{width:18px;height:18px;flex:0 0 18px}
-    .icoBig{width:22px;height:22px;flex:0 0 22px}
+    .icoW{width:18px;height:18px;flex:0 0 18px}
   </style>
 </head>
 
@@ -260,7 +287,6 @@
     <!-- NAV -->
     <div class="nav">
       <div class="brandmark">
-        <!-- simple logo -->
         <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
           <defs>
             <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -268,8 +294,8 @@
               <stop offset="1" stop-color="#22c55e"/>
             </linearGradient>
           </defs>
-        <rect x="3" y="3" width="28" height="28" rx="10" fill="url(#g)"/>
-        <path d="M12 20.5c2.4-6 7.6-9 13-9-1.2 6.3-5.2 12-12.2 12.5-.8.1-1.6.1-2.5 0 .8-1 1.3-2 1.7-3.5z" fill="white" opacity=".92"/>
+          <rect x="3" y="3" width="28" height="28" rx="10" fill="url(#g)"/>
+          <path d="M12 20.5c2.4-6 7.6-9 13-9-1.2 6.3-5.2 12-12.2 12.5-.8.1-1.6.1-2.5 0 .8-1 1.3-2 1.7-3.5z" fill="white" opacity=".92"/>
         </svg>
         <div>
           <div style="font-size:15px;line-height:1.1">Kladow Mobilitätsservice</div>
@@ -282,8 +308,7 @@
         <a class="link" href="#buchen">Buchen</a>
         <a class="link" href="#faq">FAQ</a>
         <a class="btn primary" href="tel:+493012345678">
-          <!-- phone icon -->
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="white" d="M6.6 10.8c1.6 3 3.6 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.4 1.8 1.7 2.3 1.2 3 1.2h3.6c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.2 1.2L6.6 10.8z"/>
           </svg>
           Jetzt anrufen
@@ -291,127 +316,81 @@
       </div>
     </div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="card heroL">
-        <div class="eyebrow">
-          <!-- spark icon -->
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#2563eb" d="M12 2l1.4 5.1L18 9l-4.6 1.9L12 16l-1.4-5.1L6 9l4.6-1.9L12 2z"/>
-          </svg>
-          Mobilität in Kladow
+    <!-- HERO HEADER MIT BILD -->
+    <header class="hero" role="banner" aria-label="Hero">
+      <div class="heroInner">
+        <div>
+          <div class="eyebrow">
+            <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="white" d="M12 2l1.4 5.1L18 9l-4.6 1.9L12 16l-1.4-5.1L6 9l4.6-1.9L12 2z" opacity=".95"/>
+            </svg>
+            Mobilität in Kladow
+          </div>
+
+          <h1 class="heroTitle">Sicher, planbar & persönlich –<br/>dein Fahrservice in Kladow.</h1>
+          <p class="heroSub">
+            Vorbestellen statt hoffen: Haustür-zu-Haustür, ein fester Fahrer, Buchung per Telefon oder Online.
+            Ideal für Arzttermine, Einkäufe und Alltagswege.
+          </p>
+
+          <div class="chips">
+            <div class="chip">
+              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="white" d="M9.2 16.6L4.9 12.3l1.7-1.7 2.6 2.6 7.2-7.2 1.7 1.7-8.9 8.9z" opacity=".95"/>
+              </svg>
+              Haustür-zu-Haustür
+            </div>
+            <div class="chip">
+              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="white" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm0 18.1A7.9 7.9 0 1 1 19.9 12 7.9 7.9 0 0 1 12 19.9Z" opacity=".9"/>
+                <path fill="white" d="M12.8 6.5h-1.6v6l5 3 .8-1.3-4.2-2.5V6.5z" opacity=".95"/>
+              </svg>
+              Planbare Zeitfenster
+            </div>
+            <div class="chip">
+              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="white" d="M12 2.5l7.5 3.7v5.9c0 5-3.2 9.5-7.5 10.9C7.7 21.6 4.5 17.1 4.5 12.1V6.2L12 2.5z" opacity=".95"/>
+              </svg>
+              Vertrauen & Stammkunden
+            </div>
+          </div>
+
+          <div class="cta">
+            <a class="btnSolid" href="tel:+493012345678">
+              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="white" d="M6.6 10.8c1.6 3 3.6 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.4 1.8 1.7 2.3 1.2 3 1.2h3.6c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.2 1.2L6.6 10.8z"/>
+              </svg>
+              +49 30 12345678
+            </a>
+            <a class="btnGhost" href="#buchen">
+              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="white" d="M7 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2z" opacity=".95"/>
+              </svg>
+              Online vorbestellen
+            </a>
+            <a class="btnGhost" href="#abos">
+              <svg class="icoW" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="white" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm-1 14.4-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" opacity=".95"/>
+              </svg>
+              Abo auswählen
+            </a>
+          </div>
         </div>
 
-        <h1>Verlässlich unterwegs – auch ohne Auto.</h1>
-        <p class="sub">
-          Lokaler Fahrservice für Berlin-Kladow: <b>vorbestellbar</b>, ein <b>fester Fahrer</b>,
-          Buchung per <b>Telefon</b> oder <b>Online-Formular</b>.
-        </p>
+        <aside class="infoCard" aria-label="Kurzinfo">
+          <h3>Direkt & unkompliziert</h3>
+          <p>Telefon ist der Hauptkanal – Online ist optional.</p>
+          <div class="divider"></div>
 
-        <div class="featuresRow">
-          <div class="chip">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#22c55e" d="M9.2 16.6L4.9 12.3l1.7-1.7 2.6 2.6 7.2-7.2 1.7 1.7-8.9 8.9z"/>
-            </svg>
-            Haustür-zu-Haustür
-          </div>
-          <div class="chip">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#06b6d4" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm0 18.1A7.9 7.9 0 1 1 19.9 12 7.9 7.9 0 0 1 12 19.9Z"/>
-              <path fill="#06b6d4" d="M12.8 6.5h-1.6v6l5 3 .8-1.3-4.2-2.5V6.5z"/>
-            </svg>
-            Planbar statt Stress
-          </div>
-          <div class="chip">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#2563eb" d="M12 2.5l7.5 3.7v5.9c0 5-3.2 9.5-7.5 10.9C7.7 21.6 4.5 17.1 4.5 12.1V6.2L12 2.5z"/>
-            </svg>
-            Vertrauen & Stammkund:innen
-          </div>
-          <div class="chip">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#f59e0b" d="M4 7.5h16v2H4v-2Zm0 7h16v2H4v-2Z"/>
-            </svg>
-            Transparente Abrechnung
-          </div>
-        </div>
+          <p><b>Servicezeiten (Beispiel):</b><br/>Mo–Sa 07:00–19:00</p>
+          <div class="divider"></div>
 
-        <div class="cta">
-          <a class="btn primary" href="tel:+493012345678">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="white" d="M6.6 10.8c1.6 3 3.6 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.6 22.2 1.8 13.4 1.8 2.4 1.8 1.7 2.3 1.2 3 1.2h3.6c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.2 1.2L6.6 10.8z"/>
-            </svg>
-            +49 30 12345678
-          </a>
-          <a class="btn" href="#buchen">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#2563eb" d="M7 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2z"/>
-            </svg>
-            Online vorbestellen
-          </a>
-          <a class="btn" href="#abos">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#22c55e" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm-1 14.4-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/>
-            </svg>
-            Abo wählen
-          </a>
-        </div>
-
-        <div class="note">
-          <svg class="icoBig" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#f59e0b" d="M12 2 1.8 20.4h20.4L12 2zm1 14.2h-2v-2h2v2zm0-4h-2V8h2v4.2z"/>
-          </svg>
-          <div>
-            Fahrten erfolgen als Taxi nach gültigem Tarif. Abos bieten <b>Service, Planung und Vorrang</b> – keine Tarif-Umgehung.
-          </div>
-        </div>
+          <p style="margin-bottom:0">
+            <b>Hinweis:</b> Fahrten erfolgen als Taxi nach gültigem Tarif. Abos bieten Service & Planung (keine Tarif-Umgehung).
+          </p>
+        </aside>
       </div>
-
-      <div class="card heroR">
-        <div class="mini">
-          <h3>Für wen?</h3>
-          <p>Senior:innen, Familien, Menschen ohne Auto – besonders für planbare Arzt-, Einkaufs- und Alltagsfahrten.</p>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi">
-            <svg class="icoBig" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#2563eb" d="M12 2.5l7.5 3.7v5.9c0 5-3.2 9.5-7.5 10.9C7.7 21.6 4.5 17.1 4.5 12.1V6.2L12 2.5z"/>
-            </svg>
-            <div>
-              <div class="t">Persönlich & vertraut</div>
-              <div class="d">Ein fester Fahrer statt Zufall.</div>
-            </div>
-          </div>
-          <div class="kpi">
-            <svg class="icoBig" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#06b6d4" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.2 10.2 0 0 0 12 1.8Zm0 18.1A7.9 7.9 0 1 1 19.9 12 7.9 7.9 0 0 1 12 19.9Z"/>
-              <path fill="#06b6d4" d="M12.8 6.5h-1.6v6l5 3 .8-1.3-4.2-2.5V6.5z"/>
-            </svg>
-            <div>
-              <div class="t">Planbare Zeitfenster</div>
-              <div class="d">Vorbestellen & sicher ankommen.</div>
-            </div>
-          </div>
-          <div class="kpi">
-            <svg class="icoBig" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#22c55e" d="M9.2 16.6L4.9 12.3l1.7-1.7 2.6 2.6 7.2-7.2 1.7 1.7-8.9 8.9z"/>
-            </svg>
-            <div>
-              <div class="t">Einfach buchen</div>
-              <div class="d">Telefon oder kurzes Formular.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card box" style="margin-top:12px;box-shadow:var(--shadow2)">
-          <div style="font-weight:900">Servicezeiten (Beispiel)</div>
-          <div class="muted" style="margin-top:6px;font-size:14px">
-            Mo–Sa 07:00–19:00 • Sonderzeiten nach Verfügbarkeit • Vorbestellung empfohlen
-          </div>
-        </div>
-      </div>
-    </section>
+    </header>
 
     <!-- ABOS -->
     <section class="section" id="abos">
@@ -470,7 +449,7 @@
       <p class="muted">Schnell & simpel. Du bekommst eine Bestätigung per Telefon oder E-Mail.</p>
 
       <div class="grid">
-        <div class="card box span8" style="box-shadow:var(--shadow)">
+        <div class="card box span8">
           <!-- Ohne Backend: Mailto. Für echtes Absenden später Netlify Forms / Formspree. -->
           <form class="form" action="mailto:DEINE-EMAIL@DOMAIN.DE" method="post" enctype="text/plain">
             <div class="row2">
@@ -530,12 +509,7 @@
               <textarea id="notes" name="Hinweise" placeholder="z. B. kurze Wartezeit, Rollator, Stufe am Eingang, Begleitung …"></textarea>
             </div>
 
-            <button class="btn primary" type="submit">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="white" d="M2 12l19-9-6.5 19-4-7-8.5-3z"/>
-              </svg>
-              Anfrage senden
-            </button>
+            <button class="btn primary" type="submit">Anfrage senden</button>
 
             <div class="fineprint">
               Mit dem Absenden erklärst du dich einverstanden, dass wir deine Angaben zur Bearbeitung der Anfrage nutzen.
@@ -544,22 +518,14 @@
           </form>
         </div>
 
-        <div class="card box span4" style="box-shadow:var(--shadow)">
+        <div class="card box span4">
           <h3 style="margin:0 0 10px">Direktkontakt</h3>
           <p class="muted" style="margin:0 0 12px">
             <b>Telefon:</b> <a href="tel:+493012345678" style="text-decoration:underline">+49 30 12345678</a><br/>
             <b>E-Mail:</b> <a href="mailto:DEINE-EMAIL@DOMAIN.DE" style="text-decoration:underline">DEINE-EMAIL@DOMAIN.DE</a>
           </p>
-
           <div style="border-top:1px solid var(--line);padding-top:12px" class="muted">
             <b>Empfehlung:</b> Bitte möglichst vorbestellen, damit Termine sicher klappen und Leerfahrten sinken.
-          </div>
-
-          <div style="margin-top:14px;border:1px solid rgba(37,99,235,.16);background:rgba(37,99,235,.06);padding:12px;border-radius:18px">
-            <div style="font-weight:900">Angehörige</div>
-            <div class="muted" style="margin-top:6px;font-size:14px">
-              Monatsrechnung per E-Mail möglich (transparent nach Taxitarif).
-            </div>
           </div>
         </div>
       </div>
@@ -602,11 +568,11 @@
     <footer>
       <div class="legal">
         <b>Impressum</b> (Platzhalter) • <b>Datenschutz</b> (Platzhalter)<br/>
-        Betreiber: DEIN NAME / DEINE FIRMA • Straße Hausnr. • 14089 Berlin • E-Mail: DEINE-EMAIL@DOMAIN.DE • Tel.: +49 30 12345678<br/>
-        <span class="muted">Bitte rechtssicher ausfüllen (USt-ID, Handelsregister falls vorhanden, Verantwortliche Person etc.).</span>
+        Betreiber: DEIN NAME / DEINE FIRMA • Straße Hausnr. • 14089 Berlin • E-Mail: DEINE-EMAIL@DOMAIN.DE • Tel.: +49 30 12345678
       </div>
       <div style="margin-top:10px" class="muted">© <span id="y"></span> Kladow Mobilitätsservice</div>
     </footer>
+
   </div>
 
   <script>
