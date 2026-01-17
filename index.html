@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kladow Mobilitätsservice – Verlässlich unterwegs</title>
   <meta name="description" content="Lokaler Mobilitätsservice in Berlin-Kladow: planbar, persönlich, telefonisch & online buchbar. Abos für Senior:innen und regelmäßige Fahrten." />
+
   <style>
     :root{
       --bg:#0b0f14;
@@ -32,66 +33,124 @@
     .btn:hover{background:rgba(255,255,255,.10)}
     .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));border:0;color:#071018}
     .btn.primary:hover{filter:brightness(1.03)}
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;margin-top:14px}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .hero .left{padding:26px}
-    .hero h1{font-size:40px;line-height:1.05;margin:0 0 12px}
-    @media (max-width:900px){.hero h1{font-size:34px}}
-    .sub{color:var(--muted);font-size:16px;margin:0 0 18px;max-width:60ch}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
-    .chip{border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);padding:8px 10px;border-radius:999px;font-size:13px}
+
+    /* FULL-BLEED HERO IMAGE */
+    .hero{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      min-height:420px;
+      display:flex;
+      align-items:flex-end;
+      background:
+        linear-gradient(180deg, rgba(7,16,24,.25), rgba(7,16,24,.88)),
+        url("hero-kladow.jpg") center / cover no-repeat;
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+      margin-top:14px;
+    }
+    .hero-content{
+      padding:32px;
+      max-width:720px;
+    }
+    .smallcaps{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .hero h1{
+      font-size:42px;
+      line-height:1.05;
+      margin:10px 0 12px;
+    }
+    .hero p{
+      font-size:17px;
+      color:rgba(242,245,247,.88);
+      margin:0 0 18px;
+      max-width:60ch;
+    }
+    @media (max-width:900px){
+      .hero{min-height:460px}
+      .hero-content{padding:22px}
+      .hero h1{font-size:34px}
+      .hero p{font-size:16px}
+    }
+
     .cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
-    .callout{margin-top:18px;border-left:3px solid var(--warn);padding:10px 12px;background:rgba(251,191,36,.08);border-radius:12px;color:var(--muted);font-size:13px}
-    .right{padding:18px}
-    .right .mini{padding:18px}
-    .mini h3{margin:0 0 10px;font-size:16px}
-    .mini p{margin:0;color:var(--muted);font-size:14px}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
-    .span6{grid-column:span 6}
-    .span4{grid-column:span 4}
-    .span8{grid-column:span 8}
     .span12{grid-column:span 12}
+    .span8{grid-column:span 8}
+    .span4{grid-column:span 4}
+    .span6{grid-column:span 6}
     @media (max-width:900px){.span6,.span4,.span8{grid-column:span 12}}
+
     .section{margin-top:28px}
     .section h2{margin:0 0 12px;font-size:22px}
     .muted{color:var(--muted)}
     .box{padding:18px}
-    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    @media (max-width:900px){.kpis{grid-template-columns:1fr}}
-    .kpi{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(255,255,255,.04)}
-    .kpi .big{font-size:18px;font-weight:700}
-    .kpi .small{color:var(--muted);font-size:13px;margin-top:6px}
+
+    /* ICONS */
+    .icon{
+      width:22px;
+      height:22px;
+      stroke:currentColor;
+      stroke-width:2;
+      fill:none;
+      flex:0 0 auto;
+      opacity:.95;
+    }
+    .feature{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .feature p{margin:0}
+    .feature b{display:inline-block;margin-bottom:2px}
+
+    /* PLANS */
     .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     @media (max-width:900px){.plans{grid-template-columns:1fr}}
-    .plan{padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:10px}
+    .plan{
+      padding:18px;border-radius:18px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:10px
+    }
     .plan .name{font-weight:800}
     .price{font-size:24px;font-weight:900}
     .plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
     .plan li{margin:6px 0}
     .plan .foot{color:var(--muted);font-size:12px;margin-top:auto}
-    .plan.highlight{background:linear-gradient(180deg, rgba(125,211,252,.14), rgba(52,211,153,.10));border-color:rgba(125,211,252,.35)}
+    .plan.highlight{
+      background:linear-gradient(180deg, rgba(125,211,252,.14), rgba(52,211,153,.10));
+      border-color:rgba(125,211,252,.35)
+    }
+
+    /* FORM */
     .form{display:grid;gap:10px}
     label{font-size:13px;color:var(--muted)}
     input,select,textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.22);
-      color:var(--ink);
-      outline:none;
+      width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(0,0,0,.22);color:var(--ink);outline:none;
     }
     textarea{min-height:110px;resize:vertical}
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     @media (max-width:900px){.row2{grid-template-columns:1fr}}
     .fineprint{color:var(--muted);font-size:12px}
+
+    /* FAQ */
     details{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.03)}
     details + details{margin-top:10px}
     summary{cursor:pointer;font-weight:650}
+
     footer{margin:34px 0 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
     .legal a{color:var(--muted);text-decoration:underline}
-    .smallcaps{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+    /* Tiny accent list */
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .pill{border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--muted);padding:8px 10px;border-radius:999px;font-size:13px}
   </style>
 </head>
 
@@ -111,72 +170,102 @@
       </div>
     </div>
 
+    <!-- HERO (FULL IMAGE) -->
     <section class="hero">
-      <div class="card left">
+      <div class="hero-content">
         <div class="smallcaps">Mobilität in Kladow</div>
-        <h1>Verlässlich unterwegs – auch ohne Auto.</h1>
-        <p class="sub">
-          Ein lokaler Fahrservice für Berlin-Kladow: <b>vorbestellbar</b>, <b>ein fester Fahrer</b>,
-          Buchung per <b>Telefon</b> oder <b>kurzem Online-Formular</b>.
+        <h1>Verlässlich unterwegs.<br>Auch ohne Auto.</h1>
+        <p>
+          Persönlicher Fahrservice in Kladow – vorbestellbar, telefonisch erreichbar
+          und mit festen Zeitfenstern. Ideal für Arzt-, Einkaufs- und Alltagsfahrten.
         </p>
 
-        <div class="chips">
-          <div class="chip">Haustür-zu-Haustür</div>
-          <div class="chip">Vorrang für Stammkund:innen</div>
-          <div class="chip">Feste Zeitfenster</div>
-          <div class="chip">Abrechnung transparent</div>
+        <div class="pillrow">
+          <div class="pill">Haustür-zu-Haustür</div>
+          <div class="pill">Vorrang für Stammkund:innen</div>
+          <div class="pill">Feste Zeitfenster</div>
+          <div class="pill">Einfach per Telefon</div>
         </div>
 
         <div class="cta">
           <a class="btn primary" href="tel:+493012345678">📞 +49 30 12345678</a>
-          <a class="btn" href="#buchen">Online vorbestellen</a>
-          <a class="btn" href="#abos">Abo auswählen</a>
+          <a class="btn" href="#buchen">🗓 Fahrt vorbestellen</a>
+          <a class="btn" href="#abos">⭐ Abo ansehen</a>
         </div>
 
-        <div class="callout">
+        <div style="margin-top:16px;border-left:3px solid var(--warn);padding:10px 12px;background:rgba(251,191,36,.08);border-radius:12px;color:rgba(242,245,247,.82);font-size:13px">
           Fahrten erfolgen als Taxi nach gültigem Tarif. Abos bieten <b>Service, Planung und Vorrang</b> – keine Tarif-Umgehung.
-        </div>
-      </div>
-
-      <div class="card right">
-        <div class="mini card" style="background:rgba(255,255,255,.03)">
-          <h3>Für wen?</h3>
-          <p>Senior:innen, Familien, Menschen ohne Auto – besonders für planbare Arzt-, Einkaufs- und Alltagsfahrten.</p>
-        </div>
-
-        <div class="grid" style="margin-top:12px">
-          <div class="card box span12">
-            <div class="kpis">
-              <div class="kpi">
-                <div class="big">Planbar</div>
-                <div class="small">Vorbestellungen statt Stress.</div>
-              </div>
-              <div class="kpi">
-                <div class="big">Persönlich</div>
-                <div class="small">Ein fester Ansprechpartner.</div>
-              </div>
-              <div class="kpi">
-                <div class="big">Einfach</div>
-                <div class="small">Telefon oder Online-Formular.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card box span12">
-            <div class="smallcaps">Servicezeiten</div>
-            <div style="margin-top:6px;color:var(--muted);font-size:14px">
-              Beispiel: Mo–Sa 07:00–19:00 • Vorbestellung empfohlen • Sonderzeiten nach Verfügbarkeit
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <h2>Warum dieser Service?</h2>
+      <p class="muted">Nicht „mehr App“, sondern mehr Verlässlichkeit – speziell für Kladow.</p>
+
+      <div class="grid">
+        <div class="card box span4 feature">
+          <!-- clock -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <p><b>Planbar</b><br><span class="muted">Vorbestellungen statt Unsicherheit.</span></p>
+        </div>
+
+        <div class="card box span4 feature">
+          <!-- phone -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <p><b>Telefonisch erreichbar</b><br><span class="muted">Kein App-Zwang, klare Rückmeldung.</span></p>
+        </div>
+
+        <div class="card box span4 feature">
+          <!-- home -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9l9-7 9 7"></path>
+            <path d="M9 22V12h6v10"></path>
+          </svg>
+          <p><b>Haustür-Service</b><br><span class="muted">Kurze Hilfe beim Ein-/Aussteigen möglich.</span></p>
+        </div>
+
+        <div class="card box span4 feature">
+          <!-- map pin -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <p><b>Lokal fokussiert</b><br><span class="muted">Kladow zuerst – kurze Wege, weniger Leerfahrten.</span></p>
+        </div>
+
+        <div class="card box span4 feature">
+          <!-- calendar -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 4h18v18H3z"></path>
+            <path d="M16 2v4M8 2v4M3 10h18"></path>
+          </svg>
+          <p><b>Feste Zeitfenster</b><br><span class="muted">Ideal für Arzt, Apotheke, Einkaufen.</span></p>
+        </div>
+
+        <div class="card box span4 feature">
+          <!-- shield -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+          <p><b>Vertrauen</b><br><span class="muted">Ein Fahrer, ein Ansprechpartner – Stammkund:innen willkommen.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANS -->
     <section class="section" id="abos">
       <h2>Abos (Service & Planung)</h2>
       <p class="muted">
-        Abos geben dir Vorrang, feste Zeitfenster und vereinfachte Abrechnung. Die eigentliche Fahrt wird
-        weiterhin transparent nach Taxitarif abgerechnet.
+        Abos geben dir Vorrang, feste Zeitfenster und vereinfachte Abrechnung.
+        Die eigentliche Fahrt wird weiterhin transparent nach Taxitarif abgerechnet.
       </p>
 
       <div class="plans">
@@ -217,18 +306,20 @@
       <div class="card box" style="margin-top:12px">
         <b>Für Angehörige:</b> Abos können auf Wunsch auf Rechnung laufen (z. B. Monatsrechnung per E-Mail).
       </div>
+
+      <div class="card box" style="margin-top:12px;border-left:3px solid var(--warn)">
+        <b>Wichtig:</b> Abos verkaufen Service (Vorrang/Planung/Zeitfenster/Wartezeit) – die Fahrpreise bleiben tariflich.
+      </div>
     </section>
 
+    <!-- BOOKING -->
     <section class="section" id="buchen">
       <h2>Fahrt vorbestellen</h2>
       <p class="muted">Schnell & simpel. Du bekommst eine Bestätigung per Telefon oder E-Mail.</p>
 
       <div class="grid">
         <div class="card box span8">
-          <!--
-            Ohne Backend kann das Formular nur per Mailto geöffnet werden.
-            Für "richtiges" Absenden: später z.B. Formspree, Netlify Forms oder ein Mini-Backend.
-          -->
+          <!-- Without backend: mailto. For proper submit use Netlify Forms / Formspree -->
           <form class="form" action="mailto:DEINE-EMAIL@DOMAIN.DE" method="post" enctype="text/plain">
             <div class="row2">
               <div>
@@ -302,13 +393,21 @@
             <b>Telefon:</b> <a href="tel:+493012345678" style="text-decoration:underline">+49 30 12345678</a><br/>
             <b>E-Mail:</b> <a href="mailto:DEINE-EMAIL@DOMAIN.DE" style="text-decoration:underline">DEINE-EMAIL@DOMAIN.DE</a>
           </p>
+
           <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px" class="muted">
-            <b>Hinweis:</b> Bitte möglichst vorbestellen, damit Leerfahrten vermieden werden und Termine sicher klappen.
+            <b>Tipp:</b> Für Arzttermine am besten 1–2 Tage vorher buchen. So können wir Fahrten bündeln und Leerfahrten reduzieren.
+          </div>
+
+          <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px" class="muted">
+            <b>Servicezeiten (Beispiel):</b><br/>
+            Mo–Sa 07:00–19:00<br/>
+            Sonderzeiten nach Verfügbarkeit
           </div>
         </div>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="section" id="faq">
       <h2>FAQ</h2>
 
